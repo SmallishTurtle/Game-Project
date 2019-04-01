@@ -35,7 +35,7 @@ for (let i = 0; i < squares.length; i++) {
       squares.push(s);
       console.log(squares);
     }
-    return false; // prevent default
+    return false; // prevent default hiiii
   }
 
 //ball class from which to create new balls with similar properties.
