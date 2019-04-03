@@ -1,21 +1,31 @@
 //create an empty array called balls
 let balls = [];
+let wizard;
+let point;
 
 //create a variable to hold your avatar
 let me;
 
+function preload() {
+  wizard = loadImage('mrWizard.png');
+}
 
 function setup() {
+  point=0;
   createCanvas(500, 400);
-
-  //make one avatar called me
+   //make one avatar called me
   me = new Avatar(width/2, 300, 3);
 
 }
 
-function draw(){
-	background(220);
 
+function draw(){
+	background(173, 216, 230);
+  stroke(2);
+  fill("white")
+  rect(26,18,33,20);
+  fill("black");
+  text(point, 30,30);  //make
   me.drawMe();
   me.moveMe();
 
@@ -44,16 +54,17 @@ class Avatar {
 	}
 
 	drawMe(){  // draw the running person
-    		stroke("green");
-        strokeWeight(3);
-    		fill("blue");
-		    ellipse(this.x,this.y,20,20);
-        line(this.x,this.y, this.x, this.y+40);
-        line(this.x, this.y+40, this.x-20, this.y+60);
-        line(this.x, this.y+40, this.x+10, this.y+50);
-        line(this.x+10, this.y+50, this.x+5, this.y+60);
-        line(this.x, this.y+15, this.x-10, this.y+25);
-        line(this.x-10, this.y+25, this.x+10, this.y+35);
+        image(wizard, this.x-45, this.y-20, 75, 75);
+        // stroke("green");
+        // strokeWeight(3);
+    		// fill("blue");
+		    // ellipse(this.x,this.y,20,20);
+        // line(this.x,this.y, this.x, this.y+40);
+        // line(this.x, this.y+40, this.x-20, this.y+60);
+        // line(this.x, this.y+40, this.x+10, this.y+50);
+        // line(this.x+10, this.y+50, this.x+5, this.y+60);
+        // line(this.x, this.y+15, this.x-10, this.y+25);
+        // line(this.x-10, this.y+25, this.x+10, this.y+35);
 	}
 
 	moveMe(){
@@ -85,9 +96,12 @@ class Ball {
 
 	// draw a ball on the screen at x,y
 	drawBall(){
+      let a = random(255);
+      let b = random(255);
+      let c = random(255);
     	stroke(0);
       strokeWeight(1);
-    	fill("red");
+    	fill(a, b, c);
 		  ellipse(this.x,this.y,10,10);
 	}
 
@@ -99,8 +113,12 @@ class Ball {
 
 	//if the ball hits the person, change the speed value to negative (send it in the opposite direction)
   	bounceBall(){
-    		if (this.x >= me.x-15 && this.x <= me.x+15 && this.y > me.y-40 && this.y < me.y+40){
-      			this.speed = -this.speed;
+    		if (this.x >= me.x-20 && this.x <= me.x+25 && this.y > me.y-50 && this.y < me.y+50){
+            stroke("yellow");
+            strokeWeight(10);
+            line(this.x,this.y-10, this.x, this.y+10);
+            this.speed = -this.speed;
+            point=point+1
     		}
   	}
 
