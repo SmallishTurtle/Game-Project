@@ -2,12 +2,14 @@
 let balls = [];
 let wizard;
 let point;
+//let princess;
 
 //create a variable to hold your avatar
 let me;
 
 function preload() {
   wizard = loadImage('mrWizard.png');
+  //princess = loadImage('Princess.png');
 }
 
 function setup() {
@@ -28,8 +30,9 @@ function draw(){
   text(point, 30,30);  //make
   me.drawMe();
   me.moveMe();
+  //image(princess, 0, 200);
 
-  if (frameCount % 25 == 0) {
+  if (frameCount % 40 == 0) {
       let  b = new Ball(width, random(0,height), -3);
       balls.push(b);
       console.log(balls); //print the balls array to the console
@@ -54,7 +57,7 @@ class Avatar {
 	}
 
 	drawMe(){  // draw the running person
-        image(wizard, this.x-45, this.y-20, 75, 75);
+        image(wizard, this.x-75, this.y-20, 75, 75);
         // stroke("green");
         // strokeWeight(3);
     		// fill("blue");
@@ -78,7 +81,10 @@ class Avatar {
 	}
 
   die(){
-
+    background("black");
+    stroke("red");
+    fill("red");
+    text("the princess died");
   }
 
 }
@@ -113,13 +119,14 @@ class Ball {
 
 	//if the ball hits the person, change the speed value to negative (send it in the opposite direction)
   	bounceBall(){
-    		if (this.x >= me.x-20 && this.x <= me.x+25 && this.y > me.y-50 && this.y < me.y+50){
+    		if (this.x >= me.x-1 && this.x <= me.x+1 && this.y > me.y-50 && this.y < me.y+50){
             stroke("yellow");
             strokeWeight(10);
             line(this.x,this.y-10, this.x, this.y+10);
             this.speed = -this.speed;
             point=point+1
     		}
+        
   	}
 
 }
